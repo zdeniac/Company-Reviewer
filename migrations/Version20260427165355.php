@@ -1,0 +1,39 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\AbstractMigration;
+
+/**
+ * Auto-generated Migration: Please modify to your needs!
+ */
+final class Version20260427165355 extends AbstractMigration
+{
+    public function getDescription(): string
+    {
+        return 'Creates the reviews table.';
+    }
+
+    public function up(Schema $schema): void
+    {
+        $this->addSql('
+            CREATE TABLE review (
+                id INT AUTO_INCREMENT NOT NULL, company_name VARCHAR(255) NOT NULL, 
+                rating SMALLINT NOT NULL, 
+                review_text LONGTEXT NOT NULL, 
+                author_email VARCHAR(255) NOT NULL, 
+                created_at DATETIME NOT NULL, 
+                updated_at DATETIME DEFAULT NULL, 
+                PRIMARY KEY (id)
+            ) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci`
+        ');
+    }
+
+    public function down(Schema $schema): void
+    {
+        $this->addSql('DROP TABLE review');
+    }
+}

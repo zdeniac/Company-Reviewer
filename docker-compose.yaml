@@ -1,0 +1,43 @@
+services:
+
+  php:
+    build: ./
+    container_name: review_app
+    volumes:
+      - ./:/var/www
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: mysql://root:root@db:3306/reviewer
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:alpine
+    container_name: review_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      php:
+        condition: service_started
+
+  db:
+    image: mysql:8.0
+    container_name: review_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: reviewer
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:
