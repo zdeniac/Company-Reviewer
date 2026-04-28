@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block body %}
+    <div>
+    {% for review in reviews %}
+        <div>
+        {{ review.companyName }}
+        {{ review.rating }}
+        {{ review.reviewText|u.truncate(20, "...") }}
+        {{ review.createdAt|date('Y.m.d. H:i') }}
+        </div>
+    {% endfor %}
+    </div>
+
+    <div>
+        <ul>
+        {% for i in 1..totalPages %}
+        <li><a href="{{ url('review.index', { page: i }) }}">{{ i }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

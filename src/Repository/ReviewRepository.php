@@ -16,39 +16,12 @@ class ReviewRepository extends ServiceEntityRepository
         parent::__construct($registry, Review::class);
     }
 
-    public function findAllPaginated(int $page = 1, int $limit = 10)
+    public function findPaginated(int $offset, int $perPage): array
     {
-        $offset = ($page - 1) * $limit;
-        
         return $this->createQueryBuilder('r')
             ->setFirstResult($offset)
-            ->setMaxResults($limit)
+            ->setMaxResults($perPage)
             ->getQuery()
             ->getArrayResult();
     }
-
-    //    /**
-    //     * @return Review[] Returns an array of Review objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Review
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }
