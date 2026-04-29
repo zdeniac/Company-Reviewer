@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Review;
 
+use App\Pagination\PaginatedListResult;
 use App\Pagination\PaginationFactory;
 use App\Repository\ReviewRepository;
 
@@ -15,11 +16,11 @@ final class ReviewListFetcher
     ) {
     }
 
-    public function getPaginated(int $page, int $perPage = 10, ?string $companyName = null): ReviewListResult
+    public function getPaginated(int $page, int $perPage = 10, ?string $companyName = null): PaginatedListResult
     {
         $pagination = $this->paginationFactory->create($page, $perPage, $this->repository->countFiltered($companyName));
         $items = $this->repository->findPaginated($pagination->getOffset(), $perPage, $companyName);
 
-        return new ReviewListResult($items, $pagination);
+        return new PaginatedListResult($items, $pagination);
     }
 }

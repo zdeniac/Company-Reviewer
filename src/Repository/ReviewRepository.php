@@ -45,4 +45,38 @@ class ReviewRepository extends ServiceEntityRepository
 
         return (int) $qb->getQuery()->getSingleScalarResult();
     }
+
+    public function countCompanies(): int
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(DISTINCT r.companyName)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function getRatingsByCompaniesPaginated(int $offset, int $perPage): array
+    {
+        return $this->createCompanyStatsQueryBuilder()
+            ->setFirstResult($offset)
+            ->setMaxResults($perPage)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function getRatingsByCompanies(): array
+    {
+        return $this->createCompanyStatsQueryBuilder()
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    private function createCompanyStatsQueryBuilder()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r.companyName AS companyName')
+            ->addSelect('COUNT(r.id) AS reviewNum')
+            ->addSelect('AVG(r.rating) AS averageRating')
+            ->groupBy('r.companyName')
+            ->orderBy('averageRating', 'DESC');
+    }
 }

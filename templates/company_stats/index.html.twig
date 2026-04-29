@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Értékelések{% endblock %}
+
+{% block body %}
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>Cégnév</td>
+                <td>Értékelések</td>
+                <td>Átlag</td>
+                <td><a href="{{ path('company_stats.export') }}">CSV export</a></td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rating in stats %}
+            <tr>
+                <td>{{ rating.companyName }}</td>
+                <td>{{ rating.reviewNum }}</td>
+                <td>{{ rating.averageRating }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div>
+    {{ render_pagination(pagination, 'company_stats.index') }}
+</div>
+{% endblock %}

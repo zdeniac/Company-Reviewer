@@ -22,8 +22,7 @@ final class ReviewController extends AbstractController
         $reviewList = $reviewListFetcher->getPaginated($page, companyName: $companyName);
         return $this->render('review/index.html.twig', [
             'reviews' => $reviewList->getItems(),
-            'totalPages' => $reviewList->getPagination()->getTotalPages(),
-            'currentPage' => $page,
+            'pagination' => $reviewList->getPagination(),
             'companyName' => $companyName,
         ]);
     }

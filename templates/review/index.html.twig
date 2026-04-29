@@ -21,10 +21,6 @@
     </div>
 
     <div>
-        <ul>
-        {% for i in 1..totalPages %}
-        <li><a href="{{ url('review.index', { page: i, companyName: companyName }) }}">{{ i }}</a></li>
-        {% endfor %}
-        </ul>
+        {{ render_pagination(pagination, 'review.index', { companyName: companyName }) }}
     </div>
 {% endblock %}

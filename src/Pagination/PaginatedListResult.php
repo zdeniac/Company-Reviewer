@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Review;
+namespace App\Pagination;
 
-use App\Pagination\PaginationInterface;
-
-final class ReviewListResult
+final readonly class PaginatedListResult
 {
     public function __construct(
-        private readonly array $items,
-        private readonly PaginationInterface $pagination
+        private array $items,
+        private PaginationInterface $pagination
     ) {
     }
 
