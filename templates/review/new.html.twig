@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Új vélemény{% endblock %}
+
+{% block body %}
+
+{{ form_start(form) }}
+    {{ form_row(form.companyName) }}
+    {{ form_row(form.rating) }}
+    {{ form_row(form.reviewText) }}
+    {{ form_row(form.authorEmail) }}
+
+    <button type="submit">Küldés</button>
+{{ form_end(form) }}
+
+{% endblock %}

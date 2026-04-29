@@ -9,7 +9,7 @@ use App\Pagination\PaginationInterface;
 final class ReviewListResult
 {
     public function __construct(
-        private readonly array $items = [],
+        private readonly array $items,
         private readonly PaginationInterface $pagination
     ) {
     }

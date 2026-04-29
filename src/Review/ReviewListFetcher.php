@@ -15,10 +15,10 @@ final class ReviewListFetcher
     ) {
     }
 
-    public function getPaginated(int $page, int $perPage = 10): ReviewListResult
+    public function getPaginated(int $page, int $perPage = 10, ?string $companyName = null): ReviewListResult
     {
-        $pagination = $this->paginationFactory->create($page, $perPage, $this->repository->count());
-        $items = $this->repository->findPaginated($pagination->getOffset(), $perPage);
+        $pagination = $this->paginationFactory->create($page, $perPage, $this->repository->countFiltered($companyName));
+        $items = $this->repository->findPaginated($pagination->getOffset(), $perPage, $companyName);
 
         return new ReviewListResult($items, $pagination);
     }

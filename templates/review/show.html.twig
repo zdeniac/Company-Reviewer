@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}#{{ review.id }} számú értékelés{% endblock %}
+
+{% block body %}
+
+{{ review.companyName }}
+{{ review.rating }}
+
+{{ review.authorEmail }}
+{{ review.reviewText }}
+
+{{ review.createdAt|date('Y.m.d H:i') }}
+{{ review.updatedAt|date('Y.m.d H:i') }}
+
+{% endblock %}

@@ -6,7 +6,7 @@ namespace App\Pagination;
 
 use InvalidArgumentException;
 
-final class Pagination implements PaginationInterface
+readonly class Pagination implements PaginationInterface
 {
     /**
      * @throws InvalidArgumentException

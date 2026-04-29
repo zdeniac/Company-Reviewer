@@ -3,6 +3,11 @@
 {% block title %}Reviews{% endblock %}
 
 {% block body %}
+    {% for message in app.flashes('success') %}
+
+        {{ message }}
+
+    {% endfor %}
     <div>
     {% for review in reviews %}
         <div>
@@ -10,6 +15,7 @@
         {{ review.rating }}
         {{ review.reviewText|u.truncate(20, "...") }}
         {{ review.createdAt|date('Y.m.d. H:i') }}
+        <a href="{{ url('review.show', { id: review.id }) }}">Megtekintés</a>
         </div>
     {% endfor %}
     </div>
@@ -17,7 +23,7 @@
     <div>
         <ul>
         {% for i in 1..totalPages %}
-        <li><a href="{{ url('review.index', { page: i }) }}">{{ i }}</a></li>
+        <li><a href="{{ url('review.index', { page: i, companyName: companyName }) }}">{{ i }}</a></li>
         {% endfor %}
         </ul>
     </div>

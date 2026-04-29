@@ -4,6 +4,12 @@
         <title>{% block title %}My App{% endblock %}</title>
     </head>
     <body>
+        <nav>
+            <ul>
+                <li><a href="{{ url('review.index') }}">Értékelések</a></li>
+                <li><a href="{{ url('review.new') }}">Új értékelés</a></li>
+            </ul>
+        </nav>
         {% block body %}{% endblock %}
     </body>
 </html>
