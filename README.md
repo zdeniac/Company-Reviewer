@@ -129,19 +129,22 @@ Bootstrap 5 alapú UI:
 ```bash
 
 # Docker-környezet létrehozása
-docker compose up -d --build
+sudo docker compose up -d --build
 
-# Composer telepítés
-docker compose exec php bash composer install
+# Belépés a shell-be
+sudo docker compose exec php bash
+
+# Composer telepítése
+composer install
 
 # Adatbázis létrehozása
-docker compose exec php bash bin/console doctrine:database:create
+bin/console doctrine:database:create
 
 # Migrációs fájlok lefuttatása
-docker compose exec php bash bin/console doctrine:migrations:migrate
+bin/console doctrine:migrations:migrate
 
-# Adatbázis feltöltése tesztadatokkal
-docker compose exec php bash bin/console doctrine:fixtures:load
+# Adatbázis feltöltése mintaadatokkal
+bin/console doctrine:fixtures:load
 
 ```
 ---
@@ -150,11 +153,11 @@ docker compose exec php bash bin/console doctrine:fixtures:load
 
 ```bash
 
-# Tesztkörnyezet létrehozása (a tesztadatbázis .env.test-ben van definiálva)
-docker compose exec php bash composer test:setup
+# Belépés a shell-be
+sudo docker compose exec php bash
 
-# Tesztek futtatása
-docker compose exec php bash bin/phpunit tests
+# Tesztek lefuttatása
+bin/phpunit tests
 
 ```
 
