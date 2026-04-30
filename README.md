@@ -131,14 +131,15 @@ Bootstrap 5 alapú UI:
 # Docker-környezet létrehozása
 sudo docker compose up -d --build
 
-# Belépés a shell-be
+# Belépés a PHP shell-be
 sudo docker compose exec php bash
 
 # Composer telepítése
 composer install
 
-# Adatbázis létrehozása
-bin/console doctrine:database:create
+# Adatbázisok létrehozása
+docker compose exec db mysql -uroot -proot -e "CREATE DATABASE reviewer;"
+docker compose exec db mysql -uroot -proot -e "CREATE DATABASE reviewer_test;"
 
 # Migrációs fájlok lefuttatása
 bin/console doctrine:migrations:migrate
