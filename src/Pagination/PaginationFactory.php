@@ -6,7 +6,7 @@ namespace App\Pagination;
 
 final class PaginationFactory
 {
-    public function create(int $page, int $perPage, int $total): Pagination
+    public function create(int $page, int $perPage, int $total): PaginationInterface
     {
         return new Pagination($page, $perPage, $total);
     }
