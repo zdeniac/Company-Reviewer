@@ -1,0 +1,29 @@
+{% if pages|length > 1 %}
+<nav aria-label="Pagination">
+    <ul class="pagination justify-content-center">
+
+        <li class="page-item {{ pages[0].active ? 'disabled' : '' }}">
+            <a class="page-link"
+               href="{{ pages[0].active ? '#' : pages[0].prev_url|default(pages[0].url) }}">
+                &laquo;
+            </a>
+        </li>
+
+        {% for page in pages %}
+            <li class="page-item {{ page.active ? 'active' : '' }}">
+                <a class="page-link" href="{{ page.url }}">
+                    {{ page.number }}
+                </a>
+            </li>
+        {% endfor %}
+
+        <li class="page-item {{ pages|last.active ? 'disabled' : '' }}">
+            <a class="page-link"
+               href="{{ pages|last.active ? '#' : pages|last.next_url|default(pages|last.url) }}">
+                &raquo;
+            </a>
+        </li>
+
+    </ul>
+</nav>
+{% endif %}

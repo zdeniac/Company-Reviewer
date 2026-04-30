@@ -13,24 +13,18 @@ final class PaginationRenderer
     ) {
     }
 
-    public function render(PaginationInterface $pagination, string $route, array $params = []): string
+    public function createView(PaginationInterface $pagination, string $route, array $params = []): array
     {
-        $html = '<ul>';
+        $pages = [];
 
         for ($i = 1; $i <= $pagination->getTotalPages(); $i++) {
-            $query = array_merge($params, ['page' => $i]);
-
-            $url = $this->router->generate($route, $query);
-
-            $html .= sprintf(
-                '<li><a href="%s">%d</a></li>',
-                $url,
-                $i
-            );
+            $pages[] = [
+                'number' => $i,
+                'url' => $this->router->generate($route, array_merge($params, ['page' => $i])),
+                'active' => $i === $pagination->getPage(),
+            ];
         }
 
-        $html .= '</ul>';
-
-        return $html;
+        return $pages;
     }
 }
