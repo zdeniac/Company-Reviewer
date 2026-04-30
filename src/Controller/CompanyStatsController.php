@@ -16,9 +16,10 @@ final class CompanyStatsController extends AbstractController
     public function index(CompanyRatingStatsFetcher $companyStats, int $page = 1): Response
     {
         $stats = $companyStats->getPaginated($page);
+
         return $this->render('company_stats/index.html.twig', [
             'stats' => $stats->getItems(),
-            'pagination' => $stats->getPagination()
+            'pagination' => $stats->getPagination(),
         ]);
     }
 

@@ -9,7 +9,7 @@ use Symfony\Component\Routing\RouterInterface;
 final class PaginationRenderer
 {
     public function __construct(
-        private RouterInterface $router
+        private RouterInterface $router,
     ) {
     }
 
@@ -17,7 +17,7 @@ final class PaginationRenderer
     {
         $pages = [];
 
-        for ($i = 1; $i <= $pagination->getTotalPages(); $i++) {
+        for ($i = 1; $i <= $pagination->getTotalPages(); ++$i) {
             $pages[] = [
                 'number' => $i,
                 'url' => $this->router->generate($route, array_merge($params, ['page' => $i])),

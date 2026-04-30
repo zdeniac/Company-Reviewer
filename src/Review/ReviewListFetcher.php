@@ -12,7 +12,7 @@ final class ReviewListFetcher
 {
     public function __construct(
         private readonly PaginationFactory $paginationFactory,
-        private readonly ReviewRepository $repository
+        private readonly ReviewRepository $repository,
     ) {
     }
 

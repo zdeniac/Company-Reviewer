@@ -16,10 +16,11 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ReviewController extends AbstractController
 {
     #[Route('/reviews/{page}', name: 'review.index', requirements: ['page' => '\d+'], methods: ['GET'])]
-    public function index(ReviewListFetcher $reviewListFetcher, Request $request, int $page = 1): Response 
+    public function index(ReviewListFetcher $reviewListFetcher, Request $request, int $page = 1): Response
     {
         $companyName = $request->query->get('companyName');
         $reviewList = $reviewListFetcher->getPaginated($page, companyName: $companyName);
+
         return $this->render('review/index.html.twig', [
             'reviews' => $reviewList->getItems(),
             'pagination' => $reviewList->getPagination(),

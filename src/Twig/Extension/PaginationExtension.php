@@ -9,11 +9,11 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class PaginationExtension extends AbstractExtension
-{ 
+{
     public function __construct(
         private PaginationRenderer $renderer,
-        private Environment $twig
-    ){
+        private Environment $twig,
+    ) {
     }
 
     public function getFunctions(): array

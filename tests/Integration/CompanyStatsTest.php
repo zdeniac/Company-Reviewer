@@ -32,11 +32,11 @@ class CompanyStatsTest extends AbstractDatabaseTestCase
         $this->assertSame('Google', $results[1]['companyName']);
 
         // átlag
-        $this->assertEquals(4.5, (float)$results[0]['averageRating']);
-        $this->assertEquals(3.0, (float)$results[1]['averageRating']);
+        $this->assertEquals(4.5, (float) $results[0]['averageRating']);
+        $this->assertEquals(3.0, (float) $results[1]['averageRating']);
 
         // darabszám
-        $this->assertSame(2, (int)$results[0]['reviewNum']);
-        $this->assertSame(1, (int)$results[1]['reviewNum']);
+        $this->assertSame(2, (int) $results[0]['reviewNum']);
+        $this->assertSame(1, (int) $results[1]['reviewNum']);
     }
 }

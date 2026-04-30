@@ -8,7 +8,7 @@ final readonly class PaginatedListResult
 {
     public function __construct(
         private array $items,
-        private PaginationInterface $pagination
+        private PaginationInterface $pagination,
     ) {
     }
 

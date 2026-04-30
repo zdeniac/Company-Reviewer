@@ -22,11 +22,11 @@ class ReviewRepository extends ServiceEntityRepository
             ->setFirstResult($offset)
             ->setMaxResults($perPage);
 
-        if ($companyName !== null) {
+        if (null !== $companyName) {
             $qb->andWhere('r.companyName LIKE :companyName')
                 ->setParameter('companyName', '%'.$companyName.'%');
         }
-        
+
         return $qb
             ->orderBy('r.createdAt', 'DESC')
             ->getQuery()
@@ -38,7 +38,7 @@ class ReviewRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('r')
             ->select('COUNT(r.id)');
 
-        if ($companyName !== null) {
+        if (null !== $companyName) {
             $qb->andWhere('r.companyName LIKE :companyName')
             ->setParameter('companyName', '%'.$companyName.'%');
         }

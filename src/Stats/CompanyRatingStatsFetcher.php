@@ -12,14 +12,14 @@ final readonly class CompanyRatingStatsFetcher
 {
     public function __construct(
         private PaginationFactory $paginationFactory,
-        private ReviewRepository $repository
+        private ReviewRepository $repository,
     ) {
     }
 
     public function getPaginated(int $page, int $perPage = 10): PaginatedListResult
     {
         $pagination = $this->paginationFactory->create(
-            $page, 
+            $page,
             $perPage,
             $this->repository->countCompanies()
         );

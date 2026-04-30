@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 final readonly class CompanyStatsCsvExporter
 {
     public function __construct(
-        private ReviewRepository $repository
+        private ReviewRepository $repository,
     ) {
     }
 

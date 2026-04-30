@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\Unit;
 
 use App\Pagination\Pagination;
-use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
@@ -13,7 +12,7 @@ final class PaginationTest extends TestCase
 {
     public function testConstructorThrowsExceptionWhenInvalidInput(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
 
         new Pagination(0, 10, 100);
     }

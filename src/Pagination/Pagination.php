@@ -4,20 +4,18 @@ declare(strict_types=1);
 
 namespace App\Pagination;
 
-use InvalidArgumentException;
-
 readonly class Pagination implements PaginationInterface
 {
     /**
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function __construct(
         private int $page,
         private int $perPage,
-        private int $totalItems
+        private int $totalItems,
     ) {
         if ($page < 1 || $perPage < 1) {
-            throw new InvalidArgumentException('page and perPage must be >= 1');
+            throw new \InvalidArgumentException('page and perPage must be >= 1');
         }
     }
 
