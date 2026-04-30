@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Review;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,7 +14,7 @@ class ReviewType extends AbstractType
     {
         $builder
             ->add('companyName')
-            ->add('rating')
+            ->add('rating', HiddenType::class)
             ->add('reviewText')
             ->add('authorEmail');
     }

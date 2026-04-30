@@ -53,9 +53,7 @@
                 <td>{{ review.companyName }}</td>
 
                 <td>
-                    <span class="badge bg-primary">
-                        {{ review.rating }}
-                    </span>
+                    {% include 'components/star_rating.html.twig' with { rating: review.rating } %}
                 </td>
 
                 <td>

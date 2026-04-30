@@ -1,16 +1,87 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Új vélemény{% endblock %}
+{% block title %}Új értékelés{% endblock %}
 
 {% block body %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
 
-{{ form_start(form) }}
-    {{ form_row(form.companyName) }}
-    {{ form_row(form.rating) }}
-    {{ form_row(form.reviewText) }}
-    {{ form_row(form.authorEmail) }}
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <strong>Új értékelés</strong>
+                </div>
 
-    <button type="submit">Küldés</button>
-{{ form_end(form) }}
+                <div class="card-body">
 
+                    {{ form_start(form) }}
+
+                        <div class="mb-3">
+                            {{ form_label(form.companyName) }}
+                            {{ form_widget(form.companyName) }}
+                            {{ form_errors(form.companyName) }}
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="star-rating d-flex gap-1 fs-3">
+                                {% for i in 1..5 %}
+                                    <i class="bi bi-star text-warning star"
+                                        data-value="{{ i }}"></i>
+                                {% endfor %}
+
+                                {{ form_widget(form.rating) }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.reviewText) }}
+                            {{ form_widget(form.reviewText, {'attr': {'rows': 4}}) }}
+                            {{ form_errors(form.reviewText) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.authorEmail) }}
+                            {{ form_widget(form.authorEmail) }}
+                            {{ form_errors(form.authorEmail) }}
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">
+                            Küldés
+                        </button>
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const stars = document.querySelectorAll('.star-rating .star');
+        const input = document.querySelector('input[name$="[rating]"]');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = star.dataset.value;
+                input.value = value;
+
+                updateStars(value);
+            });
+        });
+
+        function updateStars(value) {
+            stars.forEach(star => {
+                if (star.dataset.value <= value) {
+                    star.classList.remove('bi-star');
+                    star.classList.add('bi-star-fill');
+                } else {
+                    star.classList.remove('bi-star-fill');
+                    star.classList.add('bi-star');
+                }
+            });
+        }  
+    });
+</script>
 {% endblock %}
