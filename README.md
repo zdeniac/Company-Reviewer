@@ -196,7 +196,7 @@ A fejlesztés 2026. április 27–30. között zajlott.
 
 ## 📅 04. 30. (csütörtök)
 - Cégstatisztika oldal implementálása (/companies)
-- Aggregációs lekérdezések (COUNT, AVG, GROUP BY)
+- Aggregációs lekérdezések
 - CompanyRatingStatsFetcher service kialakítása
 - CSV export funkció implementálása
 - Reusable pagination Twig komponens kialakítása
