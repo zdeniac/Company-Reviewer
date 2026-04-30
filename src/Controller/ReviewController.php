@@ -15,6 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ReviewController extends AbstractController
 {
+    #[Route('/', name: 'review.home', methods: ['GET'])]
     #[Route('/reviews/{page}', name: 'review.index', requirements: ['page' => '\d+'], methods: ['GET'])]
     public function index(ReviewListFetcher $reviewListFetcher, Request $request, int $page = 1): Response
     {
