@@ -22,16 +22,16 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {% if app.request.attributes.get('_route') == 'review.new' %}active{% endif %}"
-                               href="{{ url('review.new') }}">
-                                Új értékelés
+                            <a class="nav-link {% if app.request.attributes.get('_route') starts with 'company_stats' %}active{% endif %}"
+                               href="{{ url('company_stats.index') }}">
+                                Összesített cégstatisztika
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {% if app.request.attributes.get('_route') starts with 'company_stats' %}active{% endif %}"
-                               href="{{ url('company_stats.index') }}">
-                                Összesített cégstatisztika
+                            <a class="nav-link {% if app.request.attributes.get('_route') == 'review.new' %}active{% endif %}"
+                               href="{{ url('review.new') }}">
+                                Új értékelés
                             </a>
                         </li>
 
